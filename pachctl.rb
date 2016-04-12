@@ -1,7 +1,7 @@
 require "formula"
 require "language/go"
 
-class Pachyderm < Formula
+class PachCtl < Formula
   homepage "github.com/pachyderm/pachyderm"
   url "https://github.com/pachyderm/pachyderm/archive/v1.0.356.tar.gz"
   sha1 ""
