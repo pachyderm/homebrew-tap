@@ -1,24 +1,43 @@
 require "formula"
 require "language/go"
+require 'erb'
 
-class PachCtl < Formula
+
+class Pachctl < Formula
   homepage "github.com/pachyderm/pachyderm"
   url "https://github.com/pachyderm/pachyderm/archive/v1.0.356.tar.gz"
   sha1 ""
 
   depends_on "go" => :build
 
+
+  SHIM = <<-RUNSHIM
+#!/bin/bash
+
+PACH_BUILD_NUMBER=<%= patch_version %> _pachctl $@
+RUNSHIM
+
   def install
+    generate_shim
+
     ENV["GOPATH"] = buildpath
     mkdir_p buildpath/"src/github.com/pachyderm"
     ln_s buildpath, buildpath/"src/github.com/pachyderm/pachyderm"
 
     cd "src/github.com/pachyderm/pachyderm" do
-#      system "make", "deps-client"
       system "make", "homebrew"
-#      system "GO15VENDOREXPERIMENT=1 go install ./src/server/cmd/pachctl"
+
+      # Rename binary for wrapping
+      system "mv", buildpath/"bin/pachctl", buildpath/"bin/_pachctl"
+      bin.install buildpath/"bin/_pachctl"
+
+      # Wrap binary in shim to set versions
+      shim = File.open(buildpath/"bin/pachctl", "w")
+      shim << generate_shim
+
       bin.install buildpath/"bin/pachctl"
     end
+
 
   end
 
@@ -34,4 +53,10 @@ class PachCtl < Formula
     # executables being tested: `system "#{bin}/program", "do", "something"`.
     system "#{bin}/pachctl version"
   end
+
+  def generate_shim
+    patch_version = self.version.to_s.split(".").last
+    ERB.new(SHIM).result(binding)
+  end
+
 end
