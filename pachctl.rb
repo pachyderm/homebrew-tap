@@ -5,7 +5,7 @@ require 'erb'
 
 class Pachctl < Formula
   homepage "github.com/pachyderm/pachyderm"
-  url "https://github.com/pachyderm/pachyderm/archive/v1.0.356.tar.gz"
+  url "https://github.com/pachyderm/pachyderm/archive/v1.0.494.tar.gz"
   sha1 ""
 
   depends_on "go" => :build
