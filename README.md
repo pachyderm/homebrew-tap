@@ -14,7 +14,7 @@ Place for homebrew formula to live
   - Run the following:
 
     $ curl -L -o latest_tarball https://github.com/pachyderm/pachyderm/archive/v1.0.494.tar.gz
-    $ sha256sum latest_tarball | cut -f 1 -d " "
+    $ shasum latest_tarball | cut -f 1 -d " "
 
   - Put that new sha value into the `sha` field in `pachctl.rb`
 - commit this repo & push
