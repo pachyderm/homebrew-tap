@@ -16,9 +16,8 @@ Place for homebrew formula to live
 
 # Test the release:
 
+    brew tap pachyderm/tap
     brew uninstall pachctl
     brew install pachctl
     pachctl version
     # <= should report the version you just released
-
-You may need to run the `brew tap pachyderm/tap` command if it cannot find the formula. That points brew at this repo to look for the formula.
