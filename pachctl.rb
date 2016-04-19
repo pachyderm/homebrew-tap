@@ -56,7 +56,7 @@ RUNSHIM
   end
 
   def generate_shim
-    self.version =~ /.*?\((\d*?)\)/
+    self.version.to_s =~ /.*?\((\d*?)\)/
     patch_version = $1
     ERB.new(SHIM).result(binding)
   end
