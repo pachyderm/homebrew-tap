@@ -10,6 +10,7 @@ Place for homebrew formula to live
 - make sure on GH its marked as a release
 - grab the tar url from GH. e.g. https://github.com/pachyderm/pachyderm/archive/v1.0.365.tar.gz
 - update the `url` in `pachctl.rb` to this tar URL
+- update the version field manually in `pachctl.rb`
 - Update the SHA
   - Run the following:
 
