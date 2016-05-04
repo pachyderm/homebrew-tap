@@ -9,13 +9,15 @@ Place for homebrew formula to live
   - and it needs to be merged into master to generate a tag
 - make sure on GH its marked as a release
 - grab the tar url from GH. e.g. https://github.com/pachyderm/pachyderm/archive/v1.0.365.tar.gz
-- update the `url` in `pachctl.rb` to this tar URL
-- update the version field manually in `pachctl.rb`
+- Update the `url` in `pachctl.rb` to this tar URL
+- Update the version field manually in `pachctl.rb`
 - Update the SHA
   - Run the following:
 
-    $ curl -L -o latest_tarball https://github.com/pachyderm/pachyderm/archive/v1.0.494.tar.gz
-    $ sha256sum latest_tarball | cut -f 1 -d " "
+```shell
+$ curl -L -o latest_tarball https://github.com/pachyderm/pachyderm/archive/v1.0.494.tar.gz
+$ sha256sum latest_tarball | cut -f 1 -d " "
+```
 
   - Put that new sha value into the `sha` field in `pachctl.rb`
 - commit this repo & push
