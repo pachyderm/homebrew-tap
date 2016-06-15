@@ -12,10 +12,11 @@ Place for homebrew formula to live
 - Update the `url` in `pachctl.rb` to this tar URL
 - Update the version field manually in `pachctl.rb`
 - Update the SHA
+  - Git redirects homebrew downloads to a subdomain / mirror, so be sure to use this URL when generating the SHA
   - Run the following:
 
 ```shell
-$ curl -L -o latest_tarball https://github.com/pachyderm/pachyderm/archive/v1.0.0(494).tar.gz
+$ curl -L -o latest_tarball "https://codeload.github.com/pachyderm/pachyderm/tar.gz/v1.0.1(1433)"
 $ sha256sum latest_tarball | cut -f 1 -d " "
 ```
 
