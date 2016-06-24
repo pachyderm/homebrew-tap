@@ -5,60 +5,16 @@ require 'erb'
 
 class Pachctl < Formula
   homepage "github.com/pachyderm/pachyderm"
-  url "https://github.com/pachyderm/pachyderm/archive/v1.0.1(1433).tar.gz"
-  sha256 "5d4f66d38256fb3c9b8528f3acf234b11e998b3c00215fa73cd3b4c0f8cbc4ce"
-  version "1.0.1(1433)"
-
-  depends_on "go" => :build
-
-
-  SHIM = <<-RUNSHIM
-#!/bin/bash
-
-PACH_BUILD_NUMBER=<%= patch_version %> _pachctl $@
-RUNSHIM
+  url "https://github.com/pachyderm/pachyderm/releases/download/v1.0.1-dirty/pachctl_v1.0.1-dirty_darwin_amd64.zip"
+  sha256 "1ce0a016d00d1ee7bef8aaefe824781602d26890076ee8d1bfa1b470e609c923"
+  version "v1.0.1-dirty"
 
   def install
-    generate_shim
-
-    ENV["GOPATH"] = buildpath
-    mkdir_p buildpath/"src/github.com/pachyderm"
-    ln_s buildpath, buildpath/"src/github.com/pachyderm/pachyderm"
-
-    cd "src/github.com/pachyderm/pachyderm" do
-      system "make", "homebrew"
-
-      # Rename binary for wrapping
-      system "mv", buildpath/"bin/pachctl", buildpath/"bin/_pachctl"
-      bin.install buildpath/"bin/_pachctl"
-
-      # Wrap binary in shim to set versions
-      shim = File.open(buildpath/"bin/pachctl", "w")
-      shim << generate_shim
-
-      bin.install buildpath/"bin/pachctl"
-    end
-
-
+    bin.install buildpath/"pachctl"
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! It's enough to just replace
-    # "false" with the main program this formula installs, but it'd be nice if you
-    # were more thorough. Run the test with `brew test pachyderm`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
     system "#{bin}/pachctl version"
-  end
-
-  def generate_shim
-    self.version.to_s =~ /.*?\((\d*?)\)/
-    patch_version = $1
-    ERB.new(SHIM).result(binding)
   end
 
 end
