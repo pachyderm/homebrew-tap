@@ -8,6 +8,6 @@ update-formula:
 	sed -i '' 's/url ".*"/url "$(GITHUB_HOSTING_ROOT)\/v$(VERSION)\/pachctl_$(VERSION)$(MAC_BINARY_SUFFIX)"/g' $(FORMULA)
 	curl -L -o binary "$(subst \/,/,$(GITHUB_HOSTING_ROOT))/v$(VERSION)/pachctl_$(VERSION)$(MAC_BINARY_SUFFIX)"
 	sha256sum binary | cut -f 1 -d " " > SHA
-	sed -i '' 's/sha256 ".*"/sha256 "$(shell cat SHA)"/g' $(FORMULA)
+	cat SHA | xargs -I NEWSHA sed -i '' 's/sha256 ".*"/sha256 "NEWSHA"/g' $(FORMULA)
 	sed -i '' 's/version ".*"/version "v$(VERSION)"/g' $(FORMULA)
 
