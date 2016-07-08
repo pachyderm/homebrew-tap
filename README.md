@@ -1,30 +1,15 @@
 # homebrew-tap
 Place for homebrew formula to live
 
+For now, we assume the make tasks that are run to release are run on linux (because of silly inconsistency w sed)
 
 # Release Instructions:
 
-- [find the tag/release on github you want to release](https://github.com/pachyderm/pachyderm/releases)
-  - CI needs to pass
-  - and it needs to be merged into master to generate a tag
-- make sure on GH its marked as a release
-- grab the tar url from GH. e.g. https://github.com/pachyderm/pachyderm/archive/v1.0.0(365).tar.gz
-- Update the `url` in `pachctl.rb` to this tar URL
-- Update the version field manually in `pachctl.rb`
-- Update the SHA
-  - Git redirects homebrew downloads to a subdomain / mirror, so be sure to use this URL when generating the SHA
-  - Run the following:
-
-```shell
-$ curl -L -o latest_tarball "https://codeload.github.com/pachyderm/pachyderm/tar.gz/v1.0.1(1433)"
-$ sha256sum latest_tarball | cut -f 1 -d " "
-```
-
-  - Put that new sha value into the `sha` field in `pachctl.rb`
-- commit this repo & push
+From now on, releases should be done via the automated release script. To run the script, see [these instructions](https://github.com/pachyderm/pachyderm/blob/master/doc/release_instructions.md)
 
 # Test the release:
 
+    brew untap pachyderm/tap
     brew tap pachyderm/tap
     brew uninstall pachctl
     brew install pachctl
