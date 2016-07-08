@@ -5,7 +5,8 @@ MAC_BINARY_SUFFIX=_darwin_amd64.zip
 FORMULA=pachctl.rb
 
 update-formula:
-	sed -i '' 's/url ".*"/url "$(GITHUB_HOSTING_ROOT)\/v$(VERSION)\/pachctl_$(VERSION)$(MAC_BINARY_SUFFIX)"/g' $(FORMULA)
+	@# Linux doesn't allow a space after the -i flag. OSX needs it. For now I'll assume builds/releases are done on a linux machine
+	sed -i'' 's/url ".*"/url "$(GITHUB_HOSTING_ROOT)\/v$(VERSION)\/pachctl_$(VERSION)$(MAC_BINARY_SUFFIX)"/g' $(FORMULA)
 	curl -L -o binary "$(subst \/,/,$(GITHUB_HOSTING_ROOT))/v$(VERSION)/pachctl_$(VERSION)$(MAC_BINARY_SUFFIX)"
 	# Need sha256sum ... install on mac via: 'brew install coreutils'
 	# And then do 'ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum'
