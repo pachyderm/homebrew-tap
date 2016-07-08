@@ -12,6 +12,6 @@ update-formula:
 	# And then do 'ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum'
 	which sha256sum
 	sha256sum binary | cut -f 1 -d " " > SHA
-	cat SHA | xargs -I NEWSHA sed -i '' 's/sha256 ".*"/sha256 "NEWSHA"/g' $(FORMULA)
-	sed -i '' 's/version ".*"/version "v$(VERSION)"/g' $(FORMULA)
+	cat SHA | xargs -I NEWSHA sed -i'' 's/sha256 ".*"/sha256 "NEWSHA"/g' $(FORMULA)
+	sed -i'' 's/version ".*"/version "v$(VERSION)"/g' $(FORMULA)
 
