@@ -5,9 +5,9 @@ require 'erb'
 
 class PachctlAT18 < Formula
   homepage "github.com/pachyderm/pachyderm"
-  url "https://github.com/pachyderm/pachyderm/releases/download/v1.8.2/pachctl_1.8.2_darwin_amd64.zip"
-  sha256 "8c45d0caa11849433e7d3da949f4a1ec6ee58747c427b0684e8cc1d3aaef6f1d"
-  version "v1.8.2"
+  url "https://github.com/pachyderm/pachyderm/releases/download/v1.8.2-c94af25b6a6a45ab38980e2b29010bef8869ee85/pachctl_1.8.2-c94af25b6a6a45ab38980e2b29010bef8869ee85_darwin_amd64.zip"
+  sha256 "91e65f3cb71bae84ec6727614da9a3d63507c1b71d373306fd6ca246549e7242"
+  version "v1.8.2-c94af25b6a6a45ab38980e2b29010bef8869ee85"
 
   def install
     bin.install buildpath/"pachctl"
