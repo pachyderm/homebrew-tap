@@ -5,19 +5,19 @@ require 'erb'
 
 class PachctlAT27 < Formula
   homepage "github.com/pachyderm/pachyderm"
-  version "v2.7.0-alpha.2"
+  version "v2.7.0-nightly.20230620"
 
   if Hardware::CPU.intel?
-    url "https://github.com/pachyderm/pachyderm/releases/download/v2.7.0-alpha.2/pachctl_2.7.0-alpha.2_darwin_amd64.zip"
-    sha256 "1a407c83d94073e02f3d5ad3466d568e09086b52cad7fbe5ba36e7fd93cbf748"
+    url "https://github.com/pachyderm/pachyderm/releases/download/v2.7.0-nightly.20230620/pachctl_2.7.0-nightly.20230620_darwin_amd64.zip"
+    sha256 "6db9dd2266efdfac379e59ff3f5ce33f3d3c304f66361c51894ecc5300c27ca3"
 
     def install
       bin.install buildpath/"pachctl"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/pachyderm/pachyderm/releases/download/v2.7.0-alpha.2/pachctl_2.7.0-alpha.2_darwin_arm64.zip"
-    sha256 "b32a72effad46b8d34789bad280236f427a76050564fb476e47fb8350eb846c3"
+    url "https://github.com/pachyderm/pachyderm/releases/download/v2.7.0-nightly.20230620/pachctl_2.7.0-nightly.20230620_darwin_arm64.zip"
+    sha256 "74093b739b0c119be03f4232eead7c542db9a000b8e0d4aea4001d80628a5b95"
 
     def install
       bin.install buildpath/"pachctl"
