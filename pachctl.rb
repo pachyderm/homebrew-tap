@@ -3,7 +3,7 @@ require "language/go"
 require 'erb'
 
 
-class PachctlAT26 < Formula
+class Pachctl < Formula
   homepage "github.com/pachyderm/pachyderm"
   version "v2.6.6"
 
