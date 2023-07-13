@@ -16,8 +16,8 @@ class PachctlAT25 < Formula
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/pachyderm/pachyderm/releases/download/v2.5.7/pachctl_2.5.7_darwin_arm64.zip"
-    sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+    url "https://github.com/pachyderm/pachyderm/releases/download/v2.5.6/pachctl_2.5.6_darwin_arm64.zip"
+    sha256 "a4cab553df8baa40d79e7c0c689c966aa68c4d0fedaea6a90aa8b3199b9770d6"
 
     def install
       bin.install buildpath/"pachctl"
