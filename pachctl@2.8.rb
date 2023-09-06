@@ -5,7 +5,7 @@ require 'erb'
 
 class PachctlAT28 < Formula
   homepage "github.com/pachyderm/pachyderm"
-  version "v2.8.0-alpha.1"
+  version "v2.8.0-alpha.2"
 
   if Hardware::CPU.intel?
     url "https://github.com/pachyderm/pachyderm/releases/download/v2.8.0-alpha.1/pachctl_2.8.0-alpha.1_darwin_amd64.zip"
