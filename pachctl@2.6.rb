@@ -5,19 +5,19 @@ require 'erb'
 
 class PachctlAT26 < Formula
   homepage "github.com/pachyderm/pachyderm"
-  version "v2.6.10"
+  version "v2.6.11"
 
   if Hardware::CPU.intel?
-    url "https://github.com/pachyderm/pachyderm/releases/download/v2.6.10/pachctl_2.6.10_darwin_amd64.zip"
-    sha256 "450d68359ee2efafa4dcad61d4ac945adc535fa7520a1e1abb7c9a20155a7ca1"
+    url "https://github.com/pachyderm/pachyderm/releases/download/v2.6.11/pachctl_2.6.11_darwin_amd64.zip"
+    sha256 "afd3039baba2d3188bafa88aa78da1c349d0e02fcffb28fa1d12db1197ed9989"
 
     def install
       bin.install buildpath/"pachctl"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/pachyderm/pachyderm/releases/download/v2.6.10/pachctl_2.6.10_darwin_arm64.zip"
-    sha256 "bb12422f5412b153b07af1a6a2a75d147a90c6a7a8e818284d290ebdfd1cb4f5"
+    url "https://github.com/pachyderm/pachyderm/releases/download/v2.6.11/pachctl_2.6.11_darwin_arm64.zip"
+    sha256 "f09e99f94be448a2e8150a7232d9a58d5f23559ae5c1ba3ce981f7b37d201a8b"
 
     def install
       bin.install buildpath/"pachctl"
