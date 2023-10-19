@@ -3,21 +3,21 @@ require "language/go"
 require 'erb'
 
 
-class PachctlAT25 < Formula
+class Pachctl < Formula
   homepage "github.com/pachyderm/pachyderm"
-  version "v2.5.8"
+  version "v2.7.5"
 
   if Hardware::CPU.intel?
-    url "https://github.com/pachyderm/pachyderm/releases/download/v2.5.8/pachctl_2.5.8_darwin_amd64.zip"
-    sha256 "87fa53957bc301ffd004dc3b3609b9980e435bacc609a97a054e9dcb92f21efb"
+    url "https://github.com/pachyderm/pachyderm/releases/download/v2.7.5/pachctl_2.7.5_darwin_amd64.zip"
+    sha256 "1dc279b6ba4a124b3818ed849ebdda4749bc8fd8bc7a86001c21234687c7edb1"
 
     def install
       bin.install buildpath/"pachctl"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/pachyderm/pachyderm/releases/download/v2.5.8/pachctl_2.5.8_darwin_arm64.zip"
-    sha256 "5fc32a4eacea36615905adb406fe8909e2e5c1173ce8d7ea1241cedf71c90e09"
+    url "https://github.com/pachyderm/pachyderm/releases/download/v2.7.5/pachctl_2.7.5_darwin_arm64.zip"
+    sha256 "98c2511a673f3346b6aa36bef15498f76aa78314dee2ffa28093e0b095a06bc8"
 
     def install
       bin.install buildpath/"pachctl"
