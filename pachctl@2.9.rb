@@ -1,6 +1,6 @@
 require "formula"
 require "language/go"
-require 'erb'
+require "erb"
 
 class PachctlAT29 < Formula
   homepage "github.com/pachyderm/pachyderm"

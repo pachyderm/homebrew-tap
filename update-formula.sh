@@ -20,12 +20,6 @@ MAJOR_MINOR=`echo $VERSION | cut -f -2 -d "."`
 # e.g. convert from 1.3 -> 13
 MAJOR_MINOR_SQUASHED=`echo $MAJOR_MINOR | sed 's/\.//g'`
 
-# run the old script for anything prior to 2.3.x
-if [[ $MAJOR_MINOR_SQUASHED -lt 23 ]]; then
-  ./update-formula-old.sh
-  exit 0
-fi
-
 export URL_PREFIX="${GITHUB_HOSTING_ROOT}/v${VERSION}/pachctl_${VERSION}"
 
 export MACOS_ARM64_URL="${URL_PREFIX}${MACOS_ARM64_BIN_SUFFIX}"
@@ -43,6 +37,21 @@ export PACHCTL_CLASSNAME="PachctlAT${MAJOR_MINOR_SQUASHED}"
 
 export FORMULA_FILENAME="pachctl@${MAJOR_MINOR}.rb"
 
-# The following script is just a HEREDOC catted to a file, to use Bash's
-# variable interpolation functionality as a basic templating system.
-/bin/bash pachctl.rb.sh
+# Calculate an integer from the version string. The factor between the
+# multipliers should be 10^i, where 10^i is the number of distinct
+# versions each part of the string can have. For example, if you
+# wanted to support 1000 values for each portion of the string
+# (e.g. 5.47.195), the factors would be 1000 and 1000000, instead of
+# 100 and 10000. In our case, we only need to support 0 through 99.
+VERSION_INT=$(awk -F. '{ print ($1*10000)+($2*100)+$3 }' <<< $VERSION)
+
+# The following scripts are just HEREDOCs catted to a file, to use
+# Bash's variable interpolation functionality as a basic templating
+# system. pachctl-old.rb.sh is necessary to support older, pre-ARM
+# formulas, and it's easier to use a separate bash script instead of
+# trying to contort the HEREDOC.
+if [[ $VERSION_INT -lt 20309 ]]; then
+  /bin/bash pachctl-old.rb.sh
+else
+  /bin/bash pachctl.rb.sh
+fi
