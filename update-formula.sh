@@ -38,11 +38,11 @@ export PACHCTL_CLASSNAME="PachctlAT${MAJOR_MINOR_SQUASHED}"
 export FORMULA_FILENAME="pachctl@${MAJOR_MINOR}.rb"
 
 # Calculate an integer from the version string. The factor between the
-# multipliers should be 10^i, where 10^i is the number of distinct
-# versions each part of the string can have. For example, if you
-# wanted to support 1000 values for each portion of the string
-# (e.g. 5.47.195), the factors would be 1000 and 1000000, instead of
-# 100 and 10000. In our case, we only need to support 0 through 99.
+# multipliers should be 10^i, where is the number of digits of distinct versions
+# each part of the string can have. For example, if you wanted to support 1000
+# values for each portion of the string (e.g. 5.47.195), the factors would be
+# 1000 and 1000000 (10^3), instead of 100 and 10000. In our case, we only need
+# to support 0 through 99.
 VERSION_INT=$(awk -F. '{ print ($1*10000)+($2*100)+$3 }' <<< $VERSION)
 
 # The following scripts are just HEREDOCs catted to a file, to use
