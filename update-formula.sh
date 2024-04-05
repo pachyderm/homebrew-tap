@@ -3,9 +3,17 @@
 # Full URL looks like this:
 # https://github.com/pachyderm/pachyderm/releases/download/v1.0.1-dirty/pachctl_v1.0.1-dirty_darwin_amd64.zip
 GITHUB_HOSTING_ROOT=https://github.com/pachyderm/pachyderm/releases/download
-MACINTEL_BINARY_SUFFIX=_darwin_amd64.zip
-MACARM_BINARY_SUFFIX=_darwin_arm64.zip
-FORMULA=pachctl.rb.template
+MACOS="darwin"
+LINUX="linux"
+ARM64="arm64"
+AMD64="amd64"
+ZIP=".zip"
+TGZ=".tar.gz"
+
+MACOS_AMD64_BIN_SUFFIX="_${MACOS}_${AMD64}${ZIP}"
+MACOS_ARM64_BIN_SUFFIX="_${MACOS}_${ARM64}${ZIP}"
+LINUX_AMD64_BIN_SUFFIX="_${LINUX}_${AMD64}${TGZ}"
+LINUX_ARM64_BIN_SUFFIX="_${LINUX}_${ARM64}${TGZ}"
 
 # e.g. convert from 1.3.4 -> 1.3
 MAJOR_MINOR=`echo $VERSION | cut -f -2 -d "."`
@@ -18,48 +26,23 @@ if [[ $MAJOR_MINOR_SQUASHED -lt 23 ]]; then
   exit 0
 fi
 
-cp $FORMULA pachctl@$MAJOR_MINOR.rb
+export URL_PREFIX="${GITHUB_HOSTING_ROOT}/v${VERSION}/pachctl_${VERSION}"
 
-FORMULA="pachctl@$MAJOR_MINOR.rb"
+export MACOS_ARM64_URL="${URL_PREFIX}${MACOS_ARM64_BIN_SUFFIX}"
+export MACOS_AMD64_URL="${URL_PREFIX}${MACOS_AMD64_BIN_SUFFIX}"
+export LINUX_ARM64_URL="${URL_PREFIX}${LINUX_ARM64_BIN_SUFFIX}"
+export LINUX_AMD64_URL="${URL_PREFIX}${LINUX_AMD64_BIN_SUFFIX}"
 
-# Linux doesn't allow a space after the -i flag in sed. OSX needs it.
-AMDURL=$GITHUB_HOSTING_ROOT"/v"$VERSION"/pachctl_"$VERSION$MACINTEL_BINARY_SUFFIX
-ARMURL=$GITHUB_HOSTING_ROOT"/v"$VERSION"/pachctl_"$VERSION$MACARM_BINARY_SUFFIX
-# Put the file in place
-### replace binary URL
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  sed -i '' -e "s|AMDURLPH|${AMDURL}|g" $FORMULA
-  sed -i '' -e "s|ARMURLPH|${ARMURL}|g" $FORMULA
-else
-  sed -i'' -e "s|AMDURLPH|${AMDURL}|g" $FORMULA
-  sed -i'' -e "s|ARMURLPH|${ARMURL}|g" $FORMULA
-fi
+# This should check for errors.
+export MACOS_ARM64_SHA=$(curl -Ls $MACOS_ARM64_URL | sha256sum | cut -d' ' -f 1)
+export MACOS_AMD64_SHA=$(curl -Ls $MACOS_AMD64_URL | sha256sum | cut -d' ' -f 1)
+export LINUX_ARM64_SHA=$(curl -Ls $LINUX_ARM64_URL | sha256sum | cut -d' ' -f 1)
+export LINUX_AMD64_SHA=$(curl -Ls $LINUX_AMD64_URL | sha256sum | cut -d' ' -f 1)
 
+export PACHCTL_CLASSNAME="PachctlAT${MAJOR_MINOR_SQUASHED}"
 
-### get binary and update SHA
-echo "download: $AMDURL"
-curl -L -o intelbin "$AMDURL"
-echo "download: $ARMURL"
-curl -L -o armbin "$ARMURL"
-# Need sha256sum ... install on mac via: 'brew install coreutils'
-# And then do 'ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum'
-which sha256sum
-sha256sum intelbin | cut -f 1 -d " " > INTELSHA
-sha256sum armbin | cut -f 1 -d " " > ARMSHA
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  cat INTELSHA | xargs -I NEWSHA sed -i '' -e "s|AMDSHAPH|NEWSHA|g" $FORMULA
-  cat ARMSHA | xargs -I NEWSHA sed -i '' -e "s|ARMSHAPH|NEWSHA|g" $FORMULA
-else
-  cat INTELSHA | xargs -I NEWSHA sed -i'' -e "s|AMDSHAPH|NEWSHA|g" $FORMULA
-  cat ARMSHA | xargs -I NEWSHA sed -i'' -e "s|ARMSHAPH|NEWSHA|g" $FORMULA
-fi
+export FORMULA_FILENAME="pachctl@${MAJOR_MINOR}.rb"
 
-
-### update version
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  sed -i '' 's/version ".*"/version "v'"$VERSION"'"/g' $FORMULA
-  sed -i '' 's/class Pachctl/class PachctlAT'"$MAJOR_MINOR_SQUASHED"'/g' $FORMULA
-else
-  sed -i'' 's/version ".*"/version "v'"$VERSION"'"/g' $FORMULA
-  sed -i'' 's/class Pachctl/class PachctlAT'"$MAJOR_MINOR_SQUASHED"'/g' $FORMULA
-fi
+# The following script is just a HEREDOC catted to a file, to use Bash's
+# variable interpolation functionality as a basic templating system.
+/bin/bash pachctl.rb.sh
