@@ -10,27 +10,13 @@ class ${PACHCTL_CLASSNAME} < Formula
   version "v${VERSION}"
 
   on_macos do
-    on_arm do
-      url "${MACOS_ARM64_URL}"
-      sha256 "${MACOS_ARM64_SHA}"
-    end
-
-    on_intel do
-      url "${MACOS_AMD64_URL}"
-      sha256 "${MACOS_AMD64_SHA}"
-    end
+    url "${MACOS_AMD64_URL}"
+    sha256 "${MACOS_AMD64_SHA}"
   end
 
   on_linux do
-    on_arm do
-      url "${LINUX_ARM64_URL}"
-      sha256 "${LINUX_ARM64_SHA}"
-    end
-
-    on_intel do
-      url "${LINUX_AMD64_URL}"
-      sha256 "${LINUX_AMD64_SHA}"
-    end
+    url "${LINUX_AMD64_URL}"
+    sha256 "${LINUX_AMD64_SHA}"
   end
 
   def install
