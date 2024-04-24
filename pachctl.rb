@@ -8,25 +8,25 @@ class Pachctl < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.8.8/pachctl_2.8.8_darwin_arm64.zip"
-      sha256 "27841cca1c8c0dbf0e6ea84048de7a59a7063215f457bad3df6d06785344f0eb"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.9.4/pachctl_2.9.4_darwin_arm64.zip"
+      sha256 "935c0c60c67ae2d743100077bb8feec517b5a879f70e2b9409e026b4dec16f13"
     end
 
     on_intel do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.8.8/pachctl_2.8.8_darwin_amd64.zip"
-      sha256 "dd8cb436e967e0881fbefa40bd3d6fc9bce7c6e774430a5a144d5e62a466f5ec"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.9.4/pachctl_2.9.4_darwin_amd64.zip"
+      sha256 "015d000885493ae873db180f6dbae580e9fb9640f68b4b55216a36fd52d7a63e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.8.8/pachctl_2.8.8_linux_arm64.tar.gz"
-      sha256 "981a907ae53b0936da15ed4d93165ea69d651a44abe4c2761367ec74604b1ab5"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.9.4/pachctl_2.9.4_linux_arm64.tar.gz"
+      sha256 "f0c103ee91d70ba664f572c0112dd73e31a1f10acd4f97d4bd61bea930d75020"
     end
 
     on_intel do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.8.8/pachctl_2.8.8_linux_amd64.tar.gz"
-      sha256 "7b2fa51dcb6792733fc8d5e0e78ed48070f4d37c41a631cefe431d467e17485b"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.9.4/pachctl_2.9.4_linux_amd64.tar.gz"
+      sha256 "0651ef7cba5cc1d6ecae679a57c2c3e767afe83403375161d29ce34662528ed8"
     end
   end
 
