@@ -4,7 +4,7 @@ require "erb"
 
 class Pachctl < Formula
   homepage "github.com/pachyderm/pachyderm"
-  version "v2.8.8"
+  version "v2.9.4"
 
   on_macos do
     on_arm do
