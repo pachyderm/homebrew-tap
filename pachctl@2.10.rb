@@ -4,29 +4,29 @@ require "erb"
 
 class PachctlAT210 < Formula
   homepage "github.com/pachyderm/pachyderm"
-  version "v2.10.0-rc.1"
+  version "v2.10.0-rc.2"
 
   on_macos do
     on_arm do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.1/pachctl_2.10.0-rc.1_darwin_arm64.zip"
-      sha256 "3d439e224f18e96fe4e12354b3e42a31c83aad95289cf361bc2d74a65d96b79b"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.2/pachctl_2.10.0-rc.2_darwin_arm64.zip"
+      sha256 "e905fe3e50cac0df66ebcdc6cce805316299a88c5fd191bb0ea8e05a77751e00"
     end
 
     on_intel do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.1/pachctl_2.10.0-rc.1_darwin_amd64.zip"
-      sha256 "29d990b6348bbb8e57871192297094f0a489df7bbe731b9252e5fa4e1543cd70"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.2/pachctl_2.10.0-rc.2_darwin_amd64.zip"
+      sha256 "e40dae9ef4fd5b81ca7e361b33ee28f5072e9392b9f6f1eada54306bc944659d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.1/pachctl_2.10.0-rc.1_linux_arm64.tar.gz"
-      sha256 "6b2e9eb1ac5ff36f2ee90324cb433de2b8dfb13aa7bdc7dd4aa61b5ca690a66b"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.2/pachctl_2.10.0-rc.2_linux_arm64.tar.gz"
+      sha256 "6bcd76f305558bc3fd1001107e63d500adfe0068e5b54394f64a42a1eb56bbbe"
     end
 
     on_intel do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.1/pachctl_2.10.0-rc.1_linux_amd64.tar.gz"
-      sha256 "ace56361814e015b5fa3fd4c58cac4a81c357eddbc9947b1a9f2929ac8980ec9"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.0-rc.2/pachctl_2.10.0-rc.2_linux_amd64.tar.gz"
+      sha256 "5be8571eb0f548810bde5b8dd9b93ea65c337659c40ec41bec0174cf6f1e2eb5"
     end
   end
 
