@@ -4,29 +4,29 @@ require "erb"
 
 class Pachctl < Formula
   homepage "github.com/pachyderm/pachyderm"
-  version "v2.10.7"
+  version "v2.11.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.7/pachctl_2.10.7_darwin_arm64.zip"
-      sha256 "138bb23c2c3985a4f4d568903b1e221ee4b4b63191385b778f7168c2cd665751"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.11.0/pachctl_2.11.0_darwin_arm64.zip"
+      sha256 "c519ae36c2a911dfd2905d74d3e2b21c1da833346d890206646499691f2f13d8"
     end
 
     on_intel do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.7/pachctl_2.10.7_darwin_amd64.zip"
-      sha256 "d859974714c035d2503f39936ebae5c1b435c5bd5a765e2e6e39a9c84a974f0a"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.11.0/pachctl_2.11.0_darwin_amd64.zip"
+      sha256 "ba1ff49b49bbc3f1f2daec9dcb418a7601b9fecdcd18ffc1b993a1f8cd57559f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.7/pachctl_2.10.7_linux_arm64.tar.gz"
-      sha256 "9b0585078e95a3860c392901a111cd59fb783ee7acbf8a553eb468e66fbca552"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.11.0/pachctl_2.11.0_linux_arm64.tar.gz"
+      sha256 "55801c84177809ad7350a2998422da63d687b5eb26edd0c1d89019bf2decee07"
     end
 
     on_intel do
-      url "https://github.com/pachyderm/pachyderm/releases/download/v2.10.7/pachctl_2.10.7_linux_amd64.tar.gz"
-      sha256 "b458b159fa85c9a62745af7102e27430cd79c591490de061adbe89acc849d22e"
+      url "https://github.com/pachyderm/pachyderm/releases/download/v2.11.0/pachctl_2.11.0_linux_amd64.tar.gz"
+      sha256 "91940a659aa0255fb7f6390931d531dc13d84a66576df19a7209f046a4729c9f"
     end
   end
 
